@@ -1,0 +1,20 @@
+# git install
+sudo yum install -y git
+
+# git補完
+sudo mkdir -p /opt/git-completion
+sudo wget -P /opt/git-completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash
+echo 'source /opt/git-completion/git-completion.bash' | sudo tee -a /etc/profile
+
+sudo wget -P /opt/git-completion https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh
+echo 'source /opt/git-completion/git-prompt.sh' | sudo tee -a /etc/profile
+
+# プロンプトにbranch表示
+cat << EOF | sudo tee -a /etc/profile
+GIT_PS1_SHOWDIRTYSTATE=true
+# 32m: green
+# 00m: cancel
+# 36m: cyan
+# 31m: red
+export PS1='\[\033[32m\]\u@\h\[\033[00m\]:\[\033[36m\]\w\[\033[31m\]\$(__git_ps1)\[\033[00m\]\$ '
+EOF

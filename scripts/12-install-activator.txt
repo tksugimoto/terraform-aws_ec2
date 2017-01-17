@@ -1,0 +1,6 @@
+# activatorのインストール
+# 適宜activatorのバージョンをUpdateする
+curl -o /tmp/activator.zip https://downloads.typesafe.com/typesafe-activator/1.3.10/typesafe-activator-1.3.10.zip
+unzip /tmp/activator.zip -d ~/activator
+echo 'export PATH=$HOME/activator/activator-dist-1.3.10/bin:$PATH' >> ~/.bashrc
+rm /tmp/activator.zip

@@ -1,0 +1,24 @@
+# Rename: terraform.tfvars.sample → terraform.tfvars
+
+# AWSのアクセスキー
+aws_access_key = "AKIA_____________________"
+aws_secret_key = "_______________________________"
+
+# キーペアの名前（.pemは不要）
+keyname = "hogehoge"
+
+# キーペア.pemの格納ディレクトリのPath
+# sample: ~/.ssh/keys/hogehoge.pem
+ssh_secret_key_path = ""
+
+# 各種リソースの名前のprefix
+prefix = "Test"
+
+# 東京に変更
+# region = "ap-northeast-1"
+
+# 東京のAmazon Linuxに変更
+# ami = "ami-383c1956"
+
+# SSHの待ち受けポート変更
+# ssh_port = 10022
