@@ -1,6 +1,6 @@
 
 data "template_file" "user_data_app" {
-  template = "${file("templates/user_data.tpl")}"
+  template = "${file("templates/user_data.tpl.sh")}"
 
   vars {
     ssh_port = "${var.ssh_port}"

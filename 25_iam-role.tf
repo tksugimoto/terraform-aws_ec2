@@ -16,7 +16,7 @@ resource "aws_iam_role_policy" "stop_self_policy" {
 }
 
 data "template_file" "stop_self_policy" {
-	template = "${file("templates/aws_iam_role_policy-stop_self_instances.tpl")}"
+	template = "${file("templates/aws_iam_role_policy-stop_self_instances.tpl.json")}"
 
 	vars {
 		region = "${var.region}"
