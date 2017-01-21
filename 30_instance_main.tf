@@ -25,4 +25,10 @@ resource "aws_instance" "main" {
   tags {
     Name = "${var.prefix}-main"
   }
+  lifecycle  {
+    ignore_changes = [
+      # user_dataの中でtagを変更（公開鍵のfingerprint hashをタグに追加）するため
+      "tags"
+    ]
+  }
 }
