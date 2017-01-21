@@ -23,3 +23,10 @@ data "template_file" "stop_self_policy" {
 		aws_instance_id = "${aws_instance.main.id}"
 	}
 }
+
+
+resource "aws_iam_role_policy" "create_tags" {
+	name = "${var.prefix}-create_tags@${aws_instance.main.id}"
+	role = "${aws_iam_role.stop_self_role.id}"
+	policy = "${file("iam-role/aws_iam_role_policy-create_tags.json")}"
+}
