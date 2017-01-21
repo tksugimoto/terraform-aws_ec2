@@ -21,8 +21,14 @@ resource "aws_instance" "main" {
     "${aws_security_group.allow_all_outbound.id}",
     "${aws_security_group.allow_http_inbound.id}"
   ]
-  iam_instance_profile = "${aws_iam_instance_profile.stop_self_profile.name}"
+  iam_instance_profile = "${aws_iam_instance_profile.profile.name}"
   tags {
     Name = "${var.prefix}-main"
+  }
+  lifecycle  {
+    ignore_changes = [
+      # user_dataの中でtagを変更（公開鍵のfingerprint hashをタグに追加）するため
+      "tags"
+    ]
   }
 }

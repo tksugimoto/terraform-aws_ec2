@@ -16,4 +16,20 @@ function stop-self-instance() {
 }
 EOS
 
+instanceId=`curl -s http://169.254.169.254/latest/meta-data/instance-id`
+region=`curl -s http://169.254.169.254/latest/meta-data/placement/availability-zone | sed -e 's/.$//'`
+
+cd /etc/ssh/
+
+for publik_key_file in *.pub
+do
+	result=$(ssh-keygen -l -f $publik_key_file)
+	set -- $result
+	key_bit=$1
+	fingerprint_hash=$2
+	tag_key=$publik_key_file
+	tag_value=$key_bit-$fingerprint_hash
+	aws ec2 create-tags --region $region --resources $instanceId --tags Key=$tag_key,Value=$tag_value
+done
+
 logger [end user-data]
