@@ -4,12 +4,13 @@
 aws_access_key = "AKIA_____________________"
 aws_secret_key = "_______________________________"
 
-# キーペアの名前（.pemは不要）
-keyname = "hogehoge"
-
-# キーペア.pemの格納ディレクトリのPath
-# sample: ~/.ssh/keys/hogehoge.pem
+# 秘密鍵ファイルのPath
+# sample: ~/.ssh/keys/hogehoge
 ssh_secret_key_path = ""
+
+# 公開鍵ファイルのPath
+# sample: ~/.ssh/keys/hogehoge.pub
+ssh_public_key_path = ""
 
 # 各種リソースの名前のprefix
 prefix = "Test"

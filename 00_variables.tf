@@ -2,11 +2,9 @@
 variable "aws_access_key" {}
 variable "aws_secret_key" {}
 
-# キーペア変数設定
-variable "keyname" {}
-
-# キーペア.pemの格納ディレクトリのPath
+# 秘密鍵・公開鍵ファイルのPath
 variable "ssh_secret_key_path" {}
+variable "ssh_public_key_path" {}
 
 # 名前のPrefix
 variable "prefix" {
