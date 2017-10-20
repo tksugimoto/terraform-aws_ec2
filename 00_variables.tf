@@ -29,6 +29,11 @@ variable "ami" {
   default = "ami-60b6c60a"
 }
 
+# ボリュームサイズ [GB]
+variable "volume_size" {
+  default = "8"
+}
+
 # デフォルトユーザー
 # デフォルト：Amazon Linux
 variable "ssh_user_name" {

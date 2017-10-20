@@ -13,6 +13,9 @@ resource "aws_instance" "main" {
   disable_api_termination = true
   instance_type = "${var.instance_type}"
   ami = "${var.ami}"
+  root_block_device {
+    volume_size = "${var.volume_size}"
+  }
   key_name = "${aws_key_pair.deployer.key_name}"
   # 初回インスタンス生成時に実行される処理(sshの待ち受けポート変更) 
   user_data = "${data.template_file.user_data_app.rendered}"
