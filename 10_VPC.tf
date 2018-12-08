@@ -38,6 +38,11 @@ resource "aws_route_table" "route_to_igw" {
     gateway_id = "${aws_internet_gateway.igw.id}"
   }
 
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id      = "${aws_internet_gateway.igw.id}"
+  }
+
   tags {
     Name = "${var.prefix}-外部接続用"
   }
