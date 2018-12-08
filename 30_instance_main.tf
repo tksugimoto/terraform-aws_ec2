@@ -9,6 +9,7 @@ data "template_file" "user_data_app" {
 resource "aws_instance" "main" {
   subnet_id                   = "${aws_subnet.public.id}"
   associate_public_ip_address = true
+  ipv6_address_count          = 1
   disable_api_termination     = "${var.disable_api_termination}"
   instance_type               = "${var.instance_type}"
   ami                         = "${var.ami}"
@@ -19,7 +20,7 @@ resource "aws_instance" "main" {
 
   key_name = "${aws_key_pair.deployer.key_name}"
 
-  # 初回インスタンス生成時に実行される処理(sshの待ち受けポート変更) 
+  # 初回インスタンス生成時に実行される処理(sshの待ち受けポート変更)
   user_data = "${data.template_file.user_data_app.rendered}"
 
   vpc_security_group_ids = [
