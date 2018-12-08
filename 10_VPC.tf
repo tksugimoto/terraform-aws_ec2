@@ -20,8 +20,9 @@ resource "aws_internet_gateway" "igw" {
 
 # サブネット1: public ssh/frontend用
 resource "aws_subnet" "public" {
-  vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "10.0.1.0/24"
+  vpc_id          = "${aws_vpc.main.id}"
+  cidr_block      = "10.0.1.0/24"
+  ipv6_cidr_block = "${cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, 0)}"
 
   tags {
     Name = "${var.prefix}-Public"
