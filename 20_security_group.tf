@@ -1,14 +1,13 @@
-
 # ssh
 resource "aws_security_group" "allow_ssh" {
-  name = "allow_ssh_in_vpc"
+  name        = "allow_ssh_in_vpc"
   description = "Allow ssh in vpc"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   ingress {
-    from_port = "${var.ssh_port}"
-    to_port = "${var.ssh_port}"
-    protocol = "tcp"
+    from_port   = "${var.ssh_port}"
+    to_port     = "${var.ssh_port}"
+    protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -19,15 +18,15 @@ resource "aws_security_group" "allow_ssh" {
 
 # 外への全アクセス許可
 resource "aws_security_group" "allow_all_outbound" {
-  name = "allow_all_outbound"
+  name        = "allow_all_outbound"
   description = "Allow all outbound traffic"
-  vpc_id = "${aws_vpc.main.id}"
+  vpc_id      = "${aws_vpc.main.id}"
 
   egress {
-      from_port = 0
-      to_port = 0
-      protocol = "-1"
-      cidr_blocks = ["0.0.0.0/0"]
+    from_port   = 0
+    to_port     = 0
+    protocol    = "-1"
+    cidr_blocks = ["0.0.0.0/0"]
   }
 
   tags {
@@ -37,7 +36,7 @@ resource "aws_security_group" "allow_all_outbound" {
 
 # 外からのHTTPアクセス（9000）を許可
 resource "aws_security_group" "allow_http_inbound" {
-  name = "Allow http inbound"
+  name   = "Allow http inbound"
   vpc_id = "${aws_vpc.main.id}"
 
   ingress {

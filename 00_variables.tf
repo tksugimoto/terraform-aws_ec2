@@ -1,26 +1,28 @@
 # AWS APIキー変数設定
 variable "aws_access_key" {}
+
 variable "aws_secret_key" {}
 
 # 秘密鍵・公開鍵ファイルのPath
 variable "ssh_secret_key_path" {}
+
 variable "ssh_public_key_path" {}
 
 # 名前のPrefix
 variable "prefix" {
-  default     = "Test"
+  default = "Test"
 }
 
 # インスタンスタイプ
 # デフォルト：無料枠対象のt2.micro
 variable "instance_type" {
-  default     = "t2.micro"
+  default = "t2.micro"
 }
 
 # リージョン
 # デフォルト：北米東部（バージニア）
 variable "region" {
-  default     = "us-east-1"
+  default = "us-east-1"
 }
 
 # Amazon マシンイメージ（AMI）

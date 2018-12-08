@@ -1,6 +1,5 @@
-
 output "SSH Config" {
-	value = <<EOF
+  value = <<EOF
 
 
 [~/.ssh/config]
