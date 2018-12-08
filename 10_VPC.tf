@@ -1,7 +1,8 @@
 # VPC設定
 resource "aws_vpc" "main" {
-  cidr_block           = "10.0.0.0/16"
-  enable_dns_hostnames = true
+  cidr_block                       = "10.0.0.0/16"
+  assign_generated_ipv6_cidr_block = true
+  enable_dns_hostnames             = true
 
   tags {
     Name = "${var.prefix}-VPC"
@@ -19,8 +20,9 @@ resource "aws_internet_gateway" "igw" {
 
 # サブネット1: public ssh/frontend用
 resource "aws_subnet" "public" {
-  vpc_id     = "${aws_vpc.main.id}"
-  cidr_block = "10.0.1.0/24"
+  vpc_id          = "${aws_vpc.main.id}"
+  cidr_block      = "10.0.1.0/24"
+  ipv6_cidr_block = "${cidrsubnet(aws_vpc.main.ipv6_cidr_block, 8, 0)}"
 
   tags {
     Name = "${var.prefix}-Public"
@@ -34,6 +36,11 @@ resource "aws_route_table" "route_to_igw" {
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = "${aws_internet_gateway.igw.id}"
+  }
+
+  route {
+    ipv6_cidr_block = "::/0"
+    gateway_id      = "${aws_internet_gateway.igw.id}"
   }
 
   tags {

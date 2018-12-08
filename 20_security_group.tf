@@ -11,6 +11,13 @@ resource "aws_security_group" "allow_ssh" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  ingress {
+    from_port        = "${var.ssh_port}"
+    to_port          = "${var.ssh_port}"
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
   tags {
     Name = "${var.prefix}-ssh(${var.ssh_port})を許可"
   }
@@ -29,6 +36,13 @@ resource "aws_security_group" "allow_all_outbound" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
   tags {
     Name = "${var.prefix}-外へのアクセスを許可"
   }
@@ -44,6 +58,13 @@ resource "aws_security_group" "allow_http_inbound" {
     to_port     = 9000
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
+  }
+
+  ingress {
+    from_port        = 9000
+    to_port          = 9000
+    protocol         = "tcp"
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   tags {
