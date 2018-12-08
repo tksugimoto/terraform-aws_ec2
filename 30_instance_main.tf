@@ -9,7 +9,7 @@ data "template_file" "user_data_app" {
 resource "aws_instance" "main" {
   subnet_id                   = "${aws_subnet.public.id}"
   associate_public_ip_address = true
-  disable_api_termination     = true
+  disable_api_termination     = "${var.disable_api_termination}"
   instance_type               = "${var.instance_type}"
   ami                         = "${var.ami}"
 

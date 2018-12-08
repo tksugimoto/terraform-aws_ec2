@@ -46,3 +46,8 @@ variable "ssh_user_name" {
 variable "ssh_port" {
   default = 22
 }
+
+variable "disable_api_termination" {
+  description = "EC2インスタンスの削除保護を有効にするか"
+  default     = true
+}
