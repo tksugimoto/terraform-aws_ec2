@@ -10,7 +10,7 @@ Host aws
 	Port			${var.ssh_port}
 	User			${var.ssh_user_name}
 	IdentityFile		${var.ssh_secret_key_path}
-	FingerprintHash		md5
+	FingerprintHash		sha256
 
 =======================================================
 EOF
