@@ -1,6 +1,6 @@
 resource "aws_iam_instance_profile" "profile" {
-  name  = "${var.prefix}-profile"
-  roles = ["${aws_iam_role.role_for_ec2.name}"]
+  name = "${var.prefix}-profile"
+  role = "${aws_iam_role.role_for_ec2.name}"
 }
 
 resource "aws_iam_role" "role_for_ec2" {
