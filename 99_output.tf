@@ -14,3 +14,13 @@ Host ${aws_instance.main.public_ip} ${join(" ", aws_instance.main.ipv6_addresses
 =======================================================
 EOF
 }
+
+data "aws_instance" "generated" {
+  instance_id = "${aws_instance.main.id}"
+
+  depends_on = ["aws_instance.main"]
+}
+
+output "tags" {
+  value = "${data.aws_instance.generated.tags}"
+}
