@@ -6,6 +6,10 @@ TerraformでAmazon EC2インスタンスを作成
 - VPC, セキュリティグループなどまとめてEC2インスタンス作成
 - ssh port番号の変更
 - ssh公開鍵ハッシュをEC2インスタンスのタグに自動設定
+    - `terraform output` で表示
+        - EC2インスタンス作成直後の場合、表示されない場合がある
+            - タグ設定に時間がかかるため
+            - 表示されない場合は、 `terraform refresh` で更新
 
 
 ## 使い方
