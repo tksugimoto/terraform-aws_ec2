@@ -14,3 +14,7 @@ Host ${aws_instance.main.public_ip} ${join(" ", aws_instance.main.ipv6_addresses
 =======================================================
 EOF
 }
+
+output "tags" {
+  value = "${aws_instance.main.tags}"
+}
